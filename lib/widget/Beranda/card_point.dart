@@ -37,15 +37,19 @@ class CardPoint extends StatelessWidget {
                     style: TextStyle(color: Colors.white),
                   ),
                   Row(
-                    children: const [
-                      Icon(
-                        Icons.copyright_rounded,
-                        size: 50,
-                      ),
+                    children: [
                       SizedBox(
+                          height: ScreenUtil().setHeight(80),
+                          // width: ScreenUtil().setWidth(50),
+                          child: const Image(
+                            image: AssetImage(
+                              'assets/icons/coin.png',
+                            ),
+                          )),
+                      const SizedBox(
                         width: 10,
                       ),
-                      Text(
+                      const Text(
                         "10.000",
                         style: TextStyle(fontSize: 20, color: Colors.white),
                       )

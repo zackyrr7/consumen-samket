@@ -78,31 +78,3 @@ List<Map<String, dynamic>> dataList = [
 
 ];
 
-List<Map<String, dynamic>> dataTanya = [
-  {
-    "judul": "Barang apa yang bisa dijual?",
-    "Jawaban": "asdasdsadsa1"
-  },
-   {
-    "judul": "Barang apa y bisa dijual?",
-    "Jawaban": "asdasdsadsa2"
-  },
-   {
-    "judul": "Barang apa yang bisajual?",
-    "Jawaban": "asdasdsadsa3"
-  },
-   {
-    "judul": "Barang apa yang bisa dijl?",
-    "Jawaban": "asdasdsadsa4"
-  },
-   {
-    "judul": "Barang apa yang bisa dual?",
-    "Jawaban": "asdasdsadsa5"
-  },
-   {
-    "judul": "Barang apa yang bisa dijl?",
-    "Jawaban": "asdasdsadsa6"
-  },
-
-
-];

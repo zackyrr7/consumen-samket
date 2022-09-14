@@ -1,16 +1,29 @@
 import 'package:flutter/material.dart';
-import 'package:sampah_market/demo.dart';
+import 'package:sampah_market/list_tanya.dart';
 
 class Detail extends StatelessWidget {
-  const Detail(Map<String, dynamic> dataTanya, {Key? key, required this.judul, required this.jawaban})
-      : super(key: key);
+  final Tanya tanya;
 
-  final String judul, jawaban;
+  // ignore: use_key_in_widget_constructors
+  const Detail(this.tanya);
 
   @override
   Widget build(BuildContext context) {
-    return const Card(
-      child: const Text("asdas"),
+    return SafeArea(
+      child: Card(
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(top:20.0),
+              child: Text(tanya.judul),
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(8, 50, 8, 0),
+              child: Text(tanya.jawab,textAlign: TextAlign.justify,),
+            )
+          ],
+        ),
+      ),
     );
   }
 }
