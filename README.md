@@ -1,6 +1,6 @@
 # sampah_market
 
-A new Flutter project.
+Aplikasi Tugas Akhir samket
 
 ## Getting Started
 
