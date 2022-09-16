@@ -13,7 +13,7 @@ class Tanya {
 List<Tanya> tanyaList = [
   Tanya(
     judul: "Barang apa yang bisa dijual?", jawab: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sit amet dapibus enim. Cras vitae odio fringilla, rhoncus magna ac, egestas lorem. Nunc ornare enim vitae facilisis fringilla. Mauris sed nisl sit amet libero laoreet tincidunt a a tellus. Nulla sagittis dapibus elit, sit amet auctor enim tempus nec. Sed lacus quam, laoreet ac egestas et, accumsan ut neque. Sed faucibus purus a lectus pretium posuere. Suspendisse potenti. Proin et nisl facilisis, lobortis sapien a, feugiat sapien. Suspendisse consequat eros non ipsum imperdiet convallis. Pellentesque quis mauris leo."),
-  Tanya(judul: "Barang apa yang bisa dial?", jawab: "asdasdsadsa2"),
+  Tanya(judul: "Barang apa yang bisa dialllllllllllllllllllllllllllllllllllllllllllll?", jawab: "asdasdsadsa2"),
   Tanya(judul: "Barang apa yang bisa dial?", jawab: "asdasdsadsa2"),
   Tanya(judul: "Barang apa yang bisa dial?", jawab: "asdasdsadsa2"),
   Tanya(judul: "Barang apa yang bisa dial?", jawab: "asdasdsadsa2"),

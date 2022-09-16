@@ -14,12 +14,19 @@ class Detail extends StatelessWidget {
         child: Column(
           children: [
             Padding(
-              padding: const EdgeInsets.only(top:20.0),
-              child: Text(tanya.judul),
+              padding: const EdgeInsets.only(top: 20.0),
+              child: Text(
+                tanya.judul,
+                textAlign: TextAlign.center,
+                style: const TextStyle(fontSize: 20),
+              ),
             ),
             Padding(
               padding: const EdgeInsets.fromLTRB(8, 50, 8, 0),
-              child: Text(tanya.jawab,textAlign: TextAlign.justify,),
+              child: Text(
+                tanya.jawab,
+                textAlign: TextAlign.justify,
+              ),
             )
           ],
         ),
