@@ -26,7 +26,7 @@ class Namalogo extends StatelessWidget {
         ),
         Column(
           children: const [
-            Text("Selamat datang"),
+            Text("Selamat datang,"),
             Text("Jangan Lupa Jaga Kebersihan")
           ],
         )

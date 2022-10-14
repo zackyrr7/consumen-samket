@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:sampah_market/widget/rincian%20point/banyak_point.dart';
 import 'package:sampah_market/widget/rincian%20point/rincian_list.dart';
@@ -13,11 +14,13 @@ class RincianPoint extends StatelessWidget {
         title: const Text("Rincian Point"),
       ),
       body: Column(
-        children: const [
-          RincianBanyakPoint(),
+        children:  [
+          const RincianBanyakPoint(),
 
           //List
-          RincianList()
+           SizedBox(
+            height: ScreenUtil().setHeight(550),
+          child: const RincianList())
         ],
       ),
     );

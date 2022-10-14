@@ -11,7 +11,7 @@ class RincianList extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       // color: Colors.red,
-      width: ScreenUtil().setWidth(340),
+      width: ScreenUtil().setWidth(360),
       height: ScreenUtil().setHeight(499),
       child: SingleChildScrollView(
         scrollDirection: Axis.vertical,
