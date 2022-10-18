@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:sampah_market/demo.dart';
 import 'package:sampah_market/model/barang_model.dart';
-import 'package:sampah_market/model/repository.dart';
+import 'package:sampah_market/model/repository_barang.dart';
 
 class Get extends StatefulWidget {
   const Get({Key? key}) : super(key: key);

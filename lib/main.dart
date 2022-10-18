@@ -7,7 +7,7 @@ import 'package:sampah_market/widget/botomnavbar.dart';
 
 import 'package:sampah_market/theme.dart';
 
-import 'screen/get_barang.dart';
+
 
 void main() {
   runApp(const MyApp());
@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
           title: "Sampah market",
           theme: buildThemeData(),
           //home: const MyBotNavbar(),
-          home: MyBotNavbar(),
+          home: const MyBotNavbar(),
           
         );
       },

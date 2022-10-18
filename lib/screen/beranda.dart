@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:sampah_market/screen/get_barang.dart';
+import 'package:sampah_market/screen/pesan.dart';
 import 'package:sampah_market/widget/Beranda/card_jual.dart';
 import 'package:sampah_market/widget/Beranda/card_list.dart';
 import 'package:sampah_market/widget/Beranda/card_point.dart';
 import 'package:sampah_market/widget/Beranda/card_tukar.dart';
 import 'package:sampah_market/widget/Beranda/logo_nama.dart';
-
 
 class Beranda extends StatelessWidget {
   const Beranda({Key? key}) : super(key: key);
@@ -54,8 +54,15 @@ class Beranda extends StatelessWidget {
                   width: ScreenUtil().setWidth(360), child: const CardTukar())),
           Positioned(
               top: 470,
-              child: SizedBox(
-                  width: ScreenUtil().setWidth(360), child: const Cardjual())),
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    return const Pesan();
+                  }));
+                },
+                child: SizedBox(
+                    width: ScreenUtil().setWidth(360), child: const Cardjual()),
+              )),
         ],
       ),
     );
