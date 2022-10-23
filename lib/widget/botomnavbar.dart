@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:sampah_market/constant.dart';
+import 'package:sampah_market/screen/login.dart';
 import 'package:sampah_market/screen/riwayat.dart';
 import 'package:sampah_market/screen/bantuan.dart';
 import 'package:sampah_market/screen/akun.dart';
 import 'package:sampah_market/screen/beranda.dart';
+
+
+import 'package:flutter/services.dart';
+import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 class MyBotNavbar extends StatefulWidget {
   const MyBotNavbar({Key? key}) : super(key: key);
@@ -13,6 +19,23 @@ class MyBotNavbar extends StatefulWidget {
 }
 
 class _MyBotNavbarState extends State<MyBotNavbar> {
+ late final SharedPreferences sharedPreferences;
+
+  @override
+  void initState() {
+    super.initState();
+    checkLoginStatus();
+  }
+
+  checkLoginStatus() async {
+    sharedPreferences = await SharedPreferences.getInstance();
+    if(sharedPreferences.getString("token") == null) {
+      Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (BuildContext context) => const LoginPage()), (Route<dynamic> route) => false);
+    }
+  }
+
+
+
   int _currentIndex = 0;
   final List<Widget> _children = [
     const Beranda(),
@@ -26,6 +49,9 @@ class _MyBotNavbarState extends State<MyBotNavbar> {
       _currentIndex = index;
     });
   }
+
+
+    
 
   @override
   Widget build(BuildContext context) {

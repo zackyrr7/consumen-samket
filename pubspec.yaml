@@ -36,6 +36,7 @@ dependencies:
   font_awesome_flutter: ^10.1.0
   http: ^0.13.5
   pretty_qr_code: ^2.0.2
+  shared_preferences: ^2.0.15
   url_launcher: ^6.1.5
   whatsapp: ^1.0.5
   whatsapp_sender_flutter: ^0.1.0
@@ -48,11 +49,11 @@ dev_dependencies:
 flutter_icons:
   android: "launcher_icon"
   ios: true
-  image_path: "assets/icons/sampah.png"
+  image_path: "assets/icons/Logo3.png"
 
 flutter_native_splash:
   color: "#D1F1F8"
-  image: assets/icons/sampah.png
+  image: assets/icons/Logo3.png
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

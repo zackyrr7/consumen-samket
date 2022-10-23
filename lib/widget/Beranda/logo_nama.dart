@@ -20,9 +20,12 @@ class Namalogo extends StatelessWidget {
                 Radius.circular(60),
               ),
               color: Colors.white),
-          height: ScreenUtil().setHeight(90),
-          width: ScreenUtil().setHeight(100),
-          child: Image.asset("assets/icons/sampah.png"),
+          height: ScreenUtil().setHeight(80),
+          width: ScreenUtil().setHeight(80),
+          child: Image.asset(
+            "assets/icons/Logo3.png",
+            fit: BoxFit.cover,
+          ),
         ),
         Column(
           children: const [

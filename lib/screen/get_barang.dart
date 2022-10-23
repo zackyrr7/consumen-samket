@@ -21,6 +21,7 @@ class _GetState extends State<Get> {
     super.initState();
     listBarang = serviceApi.getAllBarang();
   }
+  
 
   @override
   Widget build(BuildContext context) {
@@ -51,12 +52,11 @@ class _GetState extends State<Get> {
                           decoration: BoxDecoration(border: Border.all(),color: Colors.white),
                           child: Column(
                             children: [
+                              Text(isiBarang[index].foto),
                               SizedBox(
                                   width: ScreenUtil().setWidth(200),
-                                  child: Image(
-                                    image: AssetImage(
-                                      dataList[index]["foto"],
-                                    ),
+                                  child: Image.network(
+                                   'https://8997-180-242-233-28.ngrok.io/${isiBarang[index].foto}'.toString(),
                                     fit: BoxFit.cover,
                                   )),
                               Text(

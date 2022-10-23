@@ -1,16 +1,38 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:sampah_market/screen/get_barang.dart';
+import 'package:sampah_market/screen/login.dart';
 import 'package:sampah_market/screen/pesan.dart';
 import 'package:sampah_market/widget/Beranda/card_jual.dart';
 import 'package:sampah_market/widget/Beranda/card_list.dart';
 import 'package:sampah_market/widget/Beranda/card_point.dart';
 import 'package:sampah_market/widget/Beranda/card_tukar.dart';
 import 'package:sampah_market/widget/Beranda/logo_nama.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class Beranda extends StatelessWidget {
+class Beranda extends StatefulWidget {
   const Beranda({Key? key}) : super(key: key);
 
+  @override
+  State<Beranda> createState() => _BerandaState();
+}
+
+class _BerandaState extends State<Beranda> {
+
+  late final SharedPreferences sharedPreferences;
+
+  @override
+  void initState() {
+    super.initState();
+    checkLoginStatus();
+  }
+
+  checkLoginStatus() async {
+    sharedPreferences = await SharedPreferences.getInstance();
+    if(sharedPreferences.getString("token") == null) {
+      Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (BuildContext context) => const LoginPage()), (Route<dynamic> route) => false);
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,7 +44,7 @@ class Beranda extends StatelessWidget {
                 height: ScreenUtil().setHeight(500),
                 width: ScreenUtil().setWidth(360),
                 decoration: const BoxDecoration(
-                    color: Color(0xFF7BF091),
+                    color: Color.fromARGB(153, 123, 240, 144),
                     borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(75),
                         topRight: Radius.circular(75))),
