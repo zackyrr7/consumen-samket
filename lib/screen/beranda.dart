@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:sampah_market/screen/get_barang.dart';
 import 'package:sampah_market/screen/login.dart';
 import 'package:sampah_market/screen/pesan.dart';
+import 'package:sampah_market/screen/tukar_poin.dart';
 import 'package:sampah_market/widget/Beranda/card_jual.dart';
 import 'package:sampah_market/widget/Beranda/card_list.dart';
 import 'package:sampah_market/widget/Beranda/card_point.dart';
@@ -72,8 +73,15 @@ class _BerandaState extends State<Beranda> {
               )),
           Positioned(
               top: 560,
-              child: SizedBox(
-                  width: ScreenUtil().setWidth(360), child: const CardTukar())),
+              child: GestureDetector(
+                onTap: (){
+                  Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    return const TukarPoint();
+                  }));
+                },
+                child: SizedBox(
+                    width: ScreenUtil().setWidth(360), child: const CardTukar()),
+              )),
           Positioned(
               top: 470,
               child: GestureDetector(

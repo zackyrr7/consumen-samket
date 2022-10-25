@@ -7,8 +7,7 @@ import 'package:sampah_market/screen/akun.dart';
 import 'package:sampah_market/screen/beranda.dart';
 
 
-import 'package:flutter/services.dart';
-import 'package:http/http.dart' as http;
+
 import 'package:shared_preferences/shared_preferences.dart';
 
 class MyBotNavbar extends StatefulWidget {

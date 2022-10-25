@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:http/http.dart' as http;
-import 'package:http/http.dart';
+
 import 'package:sampah_market/constant.dart';
 import 'package:sampah_market/widget/botomnavbar.dart';
 import 'package:sampah_market/widget/login/tombol_register.dart';
@@ -46,7 +46,7 @@ class _LoginPageState extends State<LoginPage> {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     Map data = {'nomor_hp': nomor_hp, 'password': password};
 
-    // ignore: prefer_typing_uninitialized_variables
+    // ignore: prefer_typing_uninitialized_variables, avoid_init_to_null
     var jsonResponse = null;
 
 // void saveString(String jsonResponse String token) async {
@@ -57,7 +57,7 @@ class _LoginPageState extends State<LoginPage> {
 
     var response = await http.post(
         Uri.parse(
-            "http://f9b3-2001-448a-6060-9c07-dc57-6f5a-7efc-d615.ngrok.io/api/auth/login"),
+            "http://e995-182-1-167-39.ngrok.io/api/auth/login"),
         body: data);
     if (response.statusCode == 200) {
       jsonResponse = json.decode(response.body);
@@ -71,7 +71,7 @@ class _LoginPageState extends State<LoginPage> {
         });
         //saveString("token", jsonResponse['token'].toString());
 
-        sharedPreferences.setString("token", jsonResponse['token'].toString());
+        sharedPreferences.setString("token", jsonResponse['acces_token'].toString());
         Navigator.of(context).pushAndRemoveUntil(
             MaterialPageRoute(
                 builder: (BuildContext context) => const MyBotNavbar()),
@@ -82,6 +82,7 @@ class _LoginPageState extends State<LoginPage> {
         _isLoading = false;
       });
       _showAlertDialog(context, response.body);
+      // ignore: avoid_print
       print(response.body);
     }
   }
@@ -173,10 +174,10 @@ class _LoginPageState extends State<LoginPage> {
 _showAlertDialog(BuildContext context, String err) {
   Widget okButton = FloatingActionButton(
     onPressed: () => Navigator.pop(context),
-    child: Text("Ok"),
+    child: const Text("Ok"),
   );
   AlertDialog alert = AlertDialog(
-    title: Text("error"),
+    title: const Text("error"),
     content: Text(err),
     actions: [
       okButton

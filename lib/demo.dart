@@ -48,32 +48,31 @@ List<Map<String, dynamic>> dataHistory = [
 
 ];
 
-List<Map<String, dynamic>> dataList = [
+List<Map<String, dynamic>> tukar = [
   {
-    "nama": "HVS",
-    "harga": "1.700",
-    "foto": "assets/gambar/kertas.jpg",
+    "nama": "Emas Mini",
+    "foto": "assets/gambar/emas.png",
+  },
+
+   {
+    "nama": "Voucher Listrik",
+    "foto": "assets/gambar/listrik.png",
+  },
+
+   {
+    "nama": "Pembayaran PDAM",
+    "foto": "assets/gambar/air.png",
+  },
+
+   {
+    "nama": "E-Wallet",
+    "foto": "assets/gambar/ewallet.png",
   },
    {
-    "nama": "kertas",
-    "harga": "1.700",
-    "foto": "assets/gambar/kertas.jpg",
+    "nama": "Pencucian Mobil/Motor",
+    "foto": "assets/gambar/cuci.png",
   },
-   {
-    "nama": "hvs",
-    "harga": "1.700",
-    "foto": "assets/gambar/kertas.jpg",
-  },
-   {
-    "nama": "HVS",
-    "harga": "1.700",
-    "foto": "assets/gambar/kertas.jpg",
-  },
-   {
-    "nama": "HVS",
-    "harga": "1.700",
-    "foto": "assets/gambar/kertas.jpg",
-  },
+   
 
 
 ];

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:sampah_market/screen/login.dart';
+//import 'package:sampah_market/screen/login.dart';
 
 import 'package:sampah_market/widget/botomnavbar.dart';
 
@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
           title: "Sampah market",
           theme: buildThemeData(),
           //home: const LoginPage(),
-          home: const MyBotNavbar(),
+        home: const MyBotNavbar(),
         );
       },
     );

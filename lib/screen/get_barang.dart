@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:sampah_market/demo.dart';
 import 'package:sampah_market/model/barang_model.dart';
 import 'package:sampah_market/model/repository_barang.dart';
 
@@ -53,12 +52,12 @@ class _GetState extends State<Get> {
                           child: Column(
                             children: [
                               Text(isiBarang[index].foto),
-                              SizedBox(
-                                  width: ScreenUtil().setWidth(200),
-                                  child: Image.network(
-                                   'https://8997-180-242-233-28.ngrok.io/${isiBarang[index].foto}'.toString(),
-                                    fit: BoxFit.cover,
-                                  )),
+                              // SizedBox(
+                              //     width: ScreenUtil().setWidth(200),
+                              //     child: Image.network(
+                              //      'https://8997-180-242-233-28.ngrok.io/${isiBarang[index].foto}'.toString(),
+                              //       fit: BoxFit.cover,
+                              //     )),
                               Text(
                                 isiBarang[index].nama,
                               ),
