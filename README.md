@@ -1,6 +1,6 @@
 # sampah_market
 
-Aplikasi Tugas Akhir samket
+Aplikasi Konsumen sampah market()
 
 ## Getting Started
 
