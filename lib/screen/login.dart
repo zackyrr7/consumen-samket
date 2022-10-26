@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -34,7 +33,9 @@ class _LoginPageState extends State<LoginPage> {
                   logo(),
                   input(),
                   tombol(),
-                  TombolRegister(context: context,),
+                  TombolRegister(
+                    context: context,
+                  ),
                 ],
               ),
       ),
@@ -56,8 +57,7 @@ class _LoginPageState extends State<LoginPage> {
 // }
 
     var response = await http.post(
-        Uri.parse(
-            "http://e995-182-1-167-39.ngrok.io/api/auth/login"),
+        Uri.parse("http://da39-2001-448a-6060-1b4a-e59d-3115-6532-6592.ngrok.io/api/auth/login"),
         body: data);
     if (response.statusCode == 200) {
       jsonResponse = json.decode(response.body);
@@ -71,7 +71,8 @@ class _LoginPageState extends State<LoginPage> {
         });
         //saveString("token", jsonResponse['token'].toString());
 
-        sharedPreferences.setString("token", jsonResponse['acces_token'].toString());
+        sharedPreferences.setString(
+            "token", jsonResponse['acces_token'].toString());
         Navigator.of(context).pushAndRemoveUntil(
             MaterialPageRoute(
                 builder: (BuildContext context) => const MyBotNavbar()),
@@ -169,8 +170,6 @@ class _LoginPageState extends State<LoginPage> {
   }
 }
 
-
-
 _showAlertDialog(BuildContext context, String err) {
   Widget okButton = FloatingActionButton(
     onPressed: () => Navigator.pop(context),
@@ -179,11 +178,11 @@ _showAlertDialog(BuildContext context, String err) {
   AlertDialog alert = AlertDialog(
     title: const Text("error"),
     content: Text(err),
-    actions: [
-      okButton
-    ],
+    actions: [okButton],
   );
-  showDialog(context: context, builder: ( (context) {
-    return alert;
-  }));
+  showDialog(
+      context: context,
+      builder: ((context) {
+        return alert;
+      }));
 }

@@ -20,7 +20,6 @@ class _GetState extends State<Get> {
     super.initState();
     listBarang = serviceApi.getAllBarang();
   }
-  
 
   @override
   Widget build(BuildContext context) {
@@ -48,16 +47,22 @@ class _GetState extends State<Get> {
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Container(
-                          decoration: BoxDecoration(border: Border.all(),color: Colors.white),
+                          decoration: BoxDecoration(
+                              border: Border.all(), color: Colors.white),
                           child: Column(
                             children: [
-                              Text(isiBarang[index].foto),
-                              // SizedBox(
-                              //     width: ScreenUtil().setWidth(200),
-                              //     child: Image.network(
-                              //      'https://8997-180-242-233-28.ngrok.io/${isiBarang[index].foto}'.toString(),
-                              //       fit: BoxFit.cover,
-                              //     )),
+                              Padding(
+                                padding: const EdgeInsets.only(top:8.0),
+                                child: SizedBox(
+                                    //color: Colors.black,
+                                    width: ScreenUtil().setWidth(110),
+                                    height: ScreenUtil().setHeight(110),
+                                    child: Image.network(
+                                      'https://da39-2001-448a-6060-1b4a-e59d-3115-6532-6592.ngrok.io/storage/${isiBarang[index].foto}'
+                                          .toString(),
+                                      fit: BoxFit.contain,
+                                    )),
+                              ),
                               Text(
                                 isiBarang[index].nama,
                               ),
@@ -81,7 +86,7 @@ class _GetState extends State<Get> {
             } else if (snapshot.hasError) {
               return Text("${snapshot.error}");
             }
-            
+
             return const CircularProgressIndicator();
           }),
         ),
@@ -89,6 +94,3 @@ class _GetState extends State<Get> {
     );
   }
 }
-
-
-

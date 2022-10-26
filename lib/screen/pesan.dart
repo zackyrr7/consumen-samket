@@ -1,5 +1,8 @@
-import "package:flutter/material.dart";
+import 'dart:io';
 
+import "package:flutter/material.dart";
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:image_picker/image_picker.dart';
 
 class Pesan extends StatefulWidget {
   const Pesan({Key? key}) : super(key: key);
@@ -9,6 +12,18 @@ class Pesan extends StatefulWidget {
 }
 
 class _PesanState extends State<Pesan> {
+  final ImagePicker imagePicker = ImagePicker();
+
+  List<XFile>? imageFileList = [];
+
+  void selectImages() async {
+    final List<XFile>? selectedImages = await imagePicker.pickMultiImage();
+    if (selectedImages!.isNotEmpty) {
+      imageFileList!.addAll(selectedImages);
+    }
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -138,11 +153,47 @@ class _PesanState extends State<Pesan> {
                 ),
               ),
             ),
+            Padding(
+                padding: const EdgeInsets.fromLTRB(10, 20, 10, 10),
+                child: Expanded(
+                  child: Container(
+                    width: ScreenUtil().setWidth(500),
+                    height: ScreenUtil().setHeight(250),
+                    decoration: BoxDecoration(
+                        border: Border.all(color: Colors.black),
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular((10))),
+                    child: Column(children: [
+                      const Text(
+                        "Foto Sampah yang ingin di jual",
+                        style: TextStyle(color: Colors.black54),
+                      ),
+                      ElevatedButton(
+                          onPressed: () async {
+                            selectImages();
+                          },
+                          child: const Text("Upload Foto")),
+                      Expanded(
+                        child: Container(
+                            width: ScreenUtil().setWidth(500),
+                            height: ScreenUtil().setHeight(200),
+                            child: GridView.builder(
+                                itemCount: imageFileList!.length,
+                                gridDelegate:
+                                    const SliverGridDelegateWithFixedCrossAxisCount(
+                                        crossAxisCount: 3),
+                                itemBuilder: (BuildContext context, index) {
+                                  return Image.file(
+                                      File(imageFileList![index].path),
+                                      fit: BoxFit.cover);
+                                })),
+                      ),
+                    ]),
+                  ),
+                )),
 
             ElevatedButton(
-               
-                onPressed: () {},
-                child: const Text("buat penjualan sampah"))
+                onPressed: () {}, child: const Text("buat penjualan sampah"))
           ]),
         ),
       ),

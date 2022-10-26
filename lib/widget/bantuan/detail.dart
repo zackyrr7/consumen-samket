@@ -22,25 +22,27 @@ class _DetailState extends State<Detail> {
     return SafeArea(
       child: Padding(
         padding: const EdgeInsets.all(10.0),
-        child: Card(
-          child: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(top: 20.0),
-                child: Text(
-                  widget.pertanyaaan.judul,
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(fontSize: 20),
+        child: SingleChildScrollView(
+          child: Card(
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(top: 20.0),
+                  child: Text(
+                    widget.pertanyaaan.judul,
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(fontSize: 20),
+                  ),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(8, 50, 8, 0),
-                child: Text(
-                  widget.pertanyaaan.jawaban,
-                  textAlign: TextAlign.justify,
-                ),
-              )
-            ],
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(8, 50, 8, 0),
+                  child: Text(
+                    widget.pertanyaaan.jawaban,
+                    textAlign: TextAlign.justify,
+                  ),
+                )
+              ],
+            ),
           ),
         ),
       ),

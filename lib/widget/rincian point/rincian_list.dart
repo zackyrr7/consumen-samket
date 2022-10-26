@@ -27,34 +27,28 @@ class RincianList extends StatelessWidget {
                 height: ScreenUtil().setHeight(100),
                 child: Column(
                   children: [
-                    Text(
-                      dataHistory[index]['nama'],
-                      style: const TextStyle(fontSize: 22),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        dataHistory[index]['Tanggal'],
+                        style: const TextStyle(fontSize: 20),
+                      ),
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        Column(
-                          children: [
-                            const Text(
-                              "Berat",
-                              style: TextStyle(color: Colors.grey),
-                            ),
-                            Text(
-                              dataHistory[index]['Berat'],
-                              style: const TextStyle(fontSize: 20),
-                            )
-                          ],
-                        ),
-                        Column(
-                          children: [
-                            const Text("Total",
-                                style: TextStyle(color: Colors.grey)),
-                            Text(dataHistory[index]['Total'],
-                                style: const TextStyle(fontSize: 20))
-                          ],
-                        )
-                      ],
+                    Padding(
+                      padding: const EdgeInsets.only(top:10.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          Column(
+                            children: [
+                              const Text("Total",
+                                  style: TextStyle(color: Colors.grey)),
+                              Text(dataHistory[index]['Total'],
+                                  style: const TextStyle(fontSize: 20))
+                            ],
+                          )
+                        ],
+                      ),
                     )
                   ],
                 ),
@@ -66,4 +60,3 @@ class RincianList extends StatelessWidget {
     );
   }
 }
-
