@@ -13,7 +13,7 @@ class Service {
     sharedPreferences.getString("acces_token");
     //sharedPreferences.
     final response = await http.get(Uri.parse(
-        "http://da39-2001-448a-6060-1b4a-e59d-3115-6532-6592.ngrok.io/api/auth/profile"),headers: {'Authorization' : 'Bearer $token'});
+        "http://83d1-182-1-189-148.ngrok.io/api/auth/profile"),headers: {'Authorization' : 'Bearer $token'});
         if (response.statusCode == 200){
           List jsonResponse = jsonDecode(response.body);
           return jsonResponse.map((data) => User.fromJson(data)).toList();
