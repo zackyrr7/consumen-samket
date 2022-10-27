@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:sampah_market/constant.dart';
 import 'package:sampah_market/model/barang_model.dart';
 import 'package:sampah_market/model/repository_barang.dart';
 
@@ -58,7 +59,7 @@ class _GetState extends State<Get> {
                                     width: ScreenUtil().setWidth(110),
                                     height: ScreenUtil().setHeight(110),
                                     child: Image.network(
-                                      'https://da39-2001-448a-6060-1b4a-e59d-3115-6532-6592.ngrok.io/storage/${isiBarang[index].foto}'
+                                      '$url/storage/${isiBarang[index].foto}'
                                           .toString(),
                                       fit: BoxFit.contain,
                                     )),

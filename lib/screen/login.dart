@@ -57,7 +57,7 @@ class _LoginPageState extends State<LoginPage> {
 // }
 
     var response = await http.post(
-        Uri.parse("http://83d1-182-1-189-148.ngrok.io/api/auth/login"),
+        Uri.parse("$url/auth/login"),
         body: data);
     if (response.statusCode == 200) {
       jsonResponse = json.decode(response.body);
