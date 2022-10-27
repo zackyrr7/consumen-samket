@@ -59,7 +59,7 @@ class _GetState extends State<Get> {
                                     width: ScreenUtil().setWidth(110),
                                     height: ScreenUtil().setHeight(110),
                                     child: Image.network(
-                                      '$url/storage/${isiBarang[index].foto}'
+                                      '$url2/storage/${isiBarang[index].foto}'
                                           .toString(),
                                       fit: BoxFit.contain,
                                     )),

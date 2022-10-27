@@ -9,6 +9,7 @@ const emas = Color(0xFFFFD700);
 
 
  var url = "http://83d1-182-1-189-148.ngrok.io/api";
+ var url2 = "http://83d1-182-1-189-148.ngrok.io";
 const double defaultPadding = 16.0;
 
 
