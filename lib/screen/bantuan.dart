@@ -34,9 +34,9 @@ class _BantuanState extends State<Bantuan> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text(
+          title:  Text(
             "Pertanyaan yang sering ditanyakan",
-            style: TextStyle(fontSize: 15),
+            style: TextStyle(fontSize: ScreenUtil().setSp(15)),
           ),
         ),
         body: FutureBuilder<List<Pertanyaan>>(

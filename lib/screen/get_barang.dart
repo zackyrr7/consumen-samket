@@ -26,10 +26,10 @@ class _GetState extends State<Get> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: const Text(
+          title: Text(
         "Barang yang dapat dijual",
         style: TextStyle(
-          fontSize: 15,
+          fontSize: ScreenUtil().setSp(15),
         ),
       )),
       body: Center(
@@ -53,7 +53,7 @@ class _GetState extends State<Get> {
                           child: Column(
                             children: [
                               Padding(
-                                padding: const EdgeInsets.only(top:8.0),
+                                padding: const EdgeInsets.only(top: 8.0),
                                 child: SizedBox(
                                     //color: Colors.black,
                                     width: ScreenUtil().setWidth(110),

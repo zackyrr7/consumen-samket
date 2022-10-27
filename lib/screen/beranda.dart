@@ -19,7 +19,6 @@ class Beranda extends StatefulWidget {
 }
 
 class _BerandaState extends State<Beranda> {
-
   late final SharedPreferences sharedPreferences;
 
   @override
@@ -30,69 +29,67 @@ class _BerandaState extends State<Beranda> {
 
   checkLoginStatus() async {
     sharedPreferences = await SharedPreferences.getInstance();
-    if(sharedPreferences.getString("token") == null) {
-      Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (BuildContext context) => const LoginPage()), (Route<dynamic> route) => false);
+    if (sharedPreferences.getString("token") == null) {
+      Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(
+              builder: (BuildContext context) => const LoginPage()),
+          (Route<dynamic> route) => false);
     }
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
+      body: Column(
         children: [
-          Positioned(
-              bottom: 0,
-              child: Container(
-                height: ScreenUtil().setHeight(500),
-                width: ScreenUtil().setWidth(360),
-                decoration: const BoxDecoration(
-                    color: Color.fromARGB(153, 123, 240, 144),
-                    borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(75),
-                        topRight: Radius.circular(75))),
-              )),
-          Positioned(
-              top: 85,
+          Padding(
+            padding: const EdgeInsets.only(top: 35.0),
+            child: SizedBox(
+              width: ScreenUtil().setWidth(360),
+              child: const Namalogo(),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 30.0),
+            child: SizedBox(
+                width: ScreenUtil().setWidth(360), child: const CardPoint()),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 10.0),
+            child: GestureDetector(
+              onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return const Get();
+                }));
+              },
               child: SizedBox(
-                width: ScreenUtil().setWidth(360),
-                child: const Namalogo(),
-              )),
-          Positioned(
-              top: 220,
+                  width: ScreenUtil().setWidth(360), child: const CardList()),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 10.0),
+            child: GestureDetector(
+              onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return const TukarPoint();
+                }));
+              },
               child: SizedBox(
-                  width: ScreenUtil().setWidth(360), child: const CardPoint())),
-          Positioned(
-              top: 380,
-              child: GestureDetector(
-                onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) {
-                    return const Get();
-                  }));
-                },
-                child: SizedBox(
-                    width: ScreenUtil().setWidth(360), child: const CardList()),
-              )),
-          Positioned(
-              top: 560,
-              child: GestureDetector(
-                onTap: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (context) {
-                    return const TukarPoint();
-                  }));
-                },
-                child: SizedBox(
-                    width: ScreenUtil().setWidth(360), child: const CardTukar()),
-              )),
-          Positioned(
-              top: 470,
-              child: GestureDetector(
-                onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) {
-                    return const Pesan();
-                  }));
-                },
-                child: SizedBox(
-                    width: ScreenUtil().setWidth(360), child: const Cardjual()),
-              )),
+                  width: ScreenUtil().setWidth(360), child: const CardTukar()),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 10.0),
+            child: GestureDetector(
+              onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return const Pesan();
+                }));
+              },
+              child: SizedBox(
+                  width: ScreenUtil().setWidth(360), child: const Cardjual()),
+            ),
+          )
         ],
       ),
     );

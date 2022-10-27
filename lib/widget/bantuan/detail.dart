@@ -22,8 +22,8 @@ class _DetailState extends State<Detail> {
     return SafeArea(
       child: Padding(
         padding: const EdgeInsets.all(10.0),
-        child: SingleChildScrollView(
-          child: Card(
+        child: Card(
+          child: SingleChildScrollView(
             child: Column(
               children: [
                 Padding(

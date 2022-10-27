@@ -16,7 +16,7 @@ class HubunginKami extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Text("Hubungi kami"),
+               Text("Hubungi kami", style: TextStyle(fontSize: ScreenUtil().setSp(12)),),
               SizedBox(
                 width: ScreenUtil().setWidth(5),
               ),

@@ -79,12 +79,14 @@ class CardPoint extends StatelessWidget {
                   ),
                   width: ScreenUtil().setWidth(50),
                   height: ScreenUtil().setHeight(95),
-                  child: const Center(
+                  child: Center(
                       child: Expanded(
                     child: Text(
                       "Rincian Point",
                       textAlign: TextAlign.center,
-                      style: TextStyle(color: Colors.white, fontSize: 10),
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: ScreenUtil().setSp(12)),
                     ),
                   )),
                 ),

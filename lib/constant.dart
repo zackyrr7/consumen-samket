@@ -8,8 +8,8 @@ const babi = Color(0xFFfdd7e4);
 const emas = Color(0xFFFFD700);
 
 
- var url = "http://83d1-182-1-189-148.ngrok.io/api";
- var url2 = "http://83d1-182-1-189-148.ngrok.io";
+ var url = "http://ed24-2001-448a-6060-1b4a-6837-5c34-c238-8a6e.ngrok.io/api";
+ var url2 = "http://ed24-2001-448a-6060-1b4a-6837-5c34-c238-8a6e.ngrok.io";
 const double defaultPadding = 16.0;
 
 

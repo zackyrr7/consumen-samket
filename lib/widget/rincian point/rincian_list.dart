@@ -12,7 +12,7 @@ class RincianList extends StatelessWidget {
     return SizedBox(
       // color: Colors.red,
       width: ScreenUtil().setWidth(360),
-      height: ScreenUtil().setHeight(499),
+      height: ScreenUtil().setHeight(40),
       child: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: Column(
@@ -31,11 +31,11 @@ class RincianList extends StatelessWidget {
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
                         dataHistory[index]['Tanggal'],
-                        style: const TextStyle(fontSize: 20),
+                        style: TextStyle(fontSize: ScreenUtil().setSp(20)),
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(top:10.0),
+                      padding: const EdgeInsets.only(top: 5.0),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
@@ -44,7 +44,8 @@ class RincianList extends StatelessWidget {
                               const Text("Total",
                                   style: TextStyle(color: Colors.grey)),
                               Text(dataHistory[index]['Total'],
-                                  style: const TextStyle(fontSize: 20))
+                                  style: TextStyle(
+                                      fontSize: ScreenUtil().setSp(20)))
                             ],
                           )
                         ],

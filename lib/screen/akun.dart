@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:sampah_market/constant.dart';
+
 import 'package:sampah_market/model/repository_get_akun.dart';
 import 'package:sampah_market/model/user_model.dart';
 import 'package:sampah_market/screen/login.dart';
@@ -130,7 +130,7 @@ class _AkunState extends State<Akun> {
                         child: Text(
                           namaAkun.toString(),
                           maxLines: 1,
-                          style: const TextStyle(fontSize: 18),
+                          style: TextStyle(fontSize: ScreenUtil().setSp(18)),
                         ),
                       ),
                       GestureDetector(
@@ -168,7 +168,7 @@ class _AkunState extends State<Akun> {
                         Flexible(
                           child: Text(
                             nomor,
-                            style: const TextStyle(fontSize: 18),
+                            style:  TextStyle(fontSize: ScreenUtil().setSp(18)),
                           ),
                         ),
                         GestureDetector(
@@ -236,7 +236,7 @@ class _AkunState extends State<Akun> {
                         Flexible(
                           child: Text(
                             alamat,
-                            style: const TextStyle(fontSize: 15),
+                            style: TextStyle(fontSize: ScreenUtil().setSp(18))
                           ),
                         ),
                         GestureDetector(
