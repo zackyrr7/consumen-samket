@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:sampah_market/screen/register.dart';
 
 
 class TombolRegister extends StatelessWidget {
@@ -29,7 +30,11 @@ class TombolRegister extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(left: 5.0),
             child: GestureDetector(
-              onTap: () {},
+              onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return const Register();
+                }));
+              },
               child: Text(
                 "Daftar Sekarang",
                 style: TextStyle(

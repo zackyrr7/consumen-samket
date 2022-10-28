@@ -14,9 +14,12 @@ class Akun extends StatefulWidget {
   State<Akun> createState() => _AkunState();
 }
 
-late final SharedPreferences sharedPreferences;
+
+
+
 
 class _AkunState extends State<Akun> {
+  late SharedPreferences sharedPreferences;
   Service serviceApi = Service();
   late Future<List<User>> listUser;
 
@@ -26,8 +29,17 @@ class _AkunState extends State<Akun> {
     // TODO: implement initState
     super.initState();
     listUser = serviceApi.getAllUser();
+    checkLoginStatus();
     controllernama = TextEditingController();
   }
+
+   checkLoginStatus() async {
+    sharedPreferences = await SharedPreferences.getInstance();
+    if(sharedPreferences.getString("token") == null) {
+      Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (BuildContext context) => const LoginPage()), (Route<dynamic> route) => false);
+    }
+  }
+
 
   late TextEditingController controllernama;
   String? namaAkun = "Hazacky Azwat Ramadhan";
@@ -80,7 +92,7 @@ class _AkunState extends State<Akun> {
             GestureDetector(
               onTap: () {
                 sharedPreferences.clear();
-                sharedPreferences.commit();
+                //sharedPreferences.commit();
                 Navigator.of(context).pushAndRemoveUntil(
                     MaterialPageRoute(
                         builder: (BuildContext context) => const LoginPage()),
@@ -100,12 +112,12 @@ class _AkunState extends State<Akun> {
           ],
         ),
         body:
-            // FutureBuilder<List<User>>(
-            //   future: listUser,
-            //   builder: ((context, snapshot) {
-            //     if (snapshot.hasData) {
-            //       List<User> isiUser = snapshot.data!;
-            //       return
+            FutureBuilder<List<User>>(
+              future: listUser,
+              builder: ((context, snapshot) {
+                if (snapshot.hasData) {
+                  List<User> isiUser = snapshot.data!;
+                  return
             SingleChildScrollView(
                 child: Column(children: [
           Padding(
@@ -248,16 +260,15 @@ class _AkunState extends State<Akun> {
               ],
             ),
           )
-        ])));
-  }
-}
-//           } else if (snapshot.hasError) {
-//             return Text("${snapshot.error}");
-//           }
+        ]));
+  
 
-//           return const CircularProgressIndicator();
-//         }),
-//       ));
-// }
-//
-//
+          } else if (snapshot.hasError) {
+            return Text("${snapshot.error}");
+          }
+
+          return const CircularProgressIndicator();
+        }),
+      ));
+}
+}
