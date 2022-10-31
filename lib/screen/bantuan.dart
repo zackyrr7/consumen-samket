@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:sampah_market/demo.dart';
-import 'package:sampah_market/list_tanya.dart';
+
 import 'package:sampah_market/model/pertanyaan_model.dart';
 import 'package:sampah_market/widget/bantuan/detail.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -34,7 +34,7 @@ class _BantuanState extends State<Bantuan> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title:  Text(
+          title: Text(
             "Pertanyaan yang sering ditanyakan",
             style: TextStyle(fontSize: ScreenUtil().setSp(15)),
           ),
@@ -52,7 +52,7 @@ class _BantuanState extends State<Bantuan> {
                       child: ListView.builder(
                           itemCount: isiPertanyaan.length,
                           itemBuilder: (context, index) {
-                             var pertanyaan = isiPertanyaan[index] ;
+                            var pertanyaan = isiPertanyaan[index];
                             return Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: GestureDetector(
@@ -110,7 +110,11 @@ void _openWhatsAppChat() async {
   await launch(url);
 }
 
-
- _detailPage(BuildContext context, Pertanyaan pertanyaan){
-  Navigator.push(context, MaterialPageRoute(builder: (context)=> Detail(pertanyaaan: pertanyaan,)));
+_detailPage(BuildContext context, Pertanyaan pertanyaan) {
+  Navigator.push(
+      context,
+      MaterialPageRoute(
+          builder: (context) => Detail(
+                pertanyaaan: pertanyaan,
+              )));
 }

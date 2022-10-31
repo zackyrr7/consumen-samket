@@ -140,7 +140,7 @@ class _AkunState extends State<Akun> {
                     children: [
                       Flexible(
                         child: Text(
-                          namaAkun.toString(),
+                          isiUser[0].name,
                           maxLines: 1,
                           style: TextStyle(fontSize: ScreenUtil().setSp(18)),
                         ),
