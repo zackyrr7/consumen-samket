@@ -35,7 +35,7 @@ class CardTukar extends StatelessWidget {
                     width: 10,
                   ),
                   Text(
-                    "Tukar Point",
+                    "Cairkan Saldo",
                     style: TextStyle(fontSize: 15),
                   ),
                 ],

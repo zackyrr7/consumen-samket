@@ -45,7 +45,7 @@ class Service {
       'Authorization': 'Bearer $token'
     });
     if (response.statusCode == 200) {
-      List jsonResponse = jsonDecode(response.body);
+      List<dynamic> jsonResponse = jsonDecode(response.body);
       //List jsonResponse = new Map<String, dynamic>.from(jsonDecode(response.body));
       return jsonResponse.map((data) => User.fromJson(data)).toList() ;
     } else {

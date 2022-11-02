@@ -35,7 +35,7 @@ class CardPoint extends StatelessWidget {
                 child: Column(
                   children: [
                     const Text(
-                      "Poin sampah kamu sebesar:",
+                      "Saldo di Dompet kamu sebesar:",
                       style: TextStyle(color: Colors.white),
                     ),
                     Row(
