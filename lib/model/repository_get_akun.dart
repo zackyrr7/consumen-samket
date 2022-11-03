@@ -36,18 +36,19 @@ import 'package:sampah_market/model/user_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Service {
-  Future<List<User>> getAllUser() async {
+  Future<User> getAllUser() async {
     SharedPreferences pref = await SharedPreferences.getInstance();
     var token = pref.getString("token");
     final response = await http.get(Uri.parse("$url/auth/profile"), headers: {
       'Content-Type': 'application/json',
-      'Accept': 'application/json',
+      'Accerpt': 'application/json',
       'Authorization': 'Bearer $token'
     });
     if (response.statusCode == 200) {
-      List<dynamic> jsonResponse = jsonDecode(response.body);
+      //List jsonResponse = jsonDecode(response.body);
+   
       //List jsonResponse = new Map<String, dynamic>.from(jsonDecode(response.body));
-      return jsonResponse.map((data) => User.fromJson(data)).toList() ;
+      return User.fromJson(jsonDecode(response.body)) ;
     } else {
       throw Exception('failed to load data');
     }

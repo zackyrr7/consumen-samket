@@ -186,7 +186,7 @@ class TukarPoint extends StatelessWidget {
             child: GestureDetector(
               onTap: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return const Cuci();
+                  return const Cucii();
                 }));
               },
               child: Container(

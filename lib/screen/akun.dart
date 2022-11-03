@@ -14,32 +14,31 @@ class Akun extends StatefulWidget {
   State<Akun> createState() => _AkunState();
 }
 
-
-
-
-
 class _AkunState extends State<Akun> {
   late SharedPreferences sharedPreferences;
   Service serviceApi = Service();
-  late Future<List<User>> listUser;
+  late Future<User> listUser;
 
   @override
   void initState() {
     // ignore: todo
     // TODO: implement initState
     super.initState();
+    //listUser = serviceApi.getAllUser();
     listUser = serviceApi.getAllUser();
     checkLoginStatus();
     controllernama = TextEditingController();
   }
 
-   checkLoginStatus() async {
+  checkLoginStatus() async {
     sharedPreferences = await SharedPreferences.getInstance();
-    if(sharedPreferences.getString("token") == null) {
-      Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (BuildContext context) => const LoginPage()), (Route<dynamic> route) => false);
+    if (sharedPreferences.getString("token") == null) {
+      Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(
+              builder: (BuildContext context) => const LoginPage()),
+          (Route<dynamic> route) => false);
     }
   }
-
 
   late TextEditingController controllernama;
   String? namaAkun = "Hazacky Azwat Ramadhan";
@@ -111,164 +110,162 @@ class _AkunState extends State<Akun> {
             )
           ],
         ),
-        body:
-            FutureBuilder<List<User>>(
-              future: listUser,
-              builder: ((context, snapshot) {
-                if (snapshot.hasData) {
-                  List<User> isiUser = snapshot.data!;
-                  return
-            SingleChildScrollView(
-                child: Column(children: [
-          Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Column(children: [
-              SizedBox(
-                  width: MediaQuery.of(context).size.width,
-                  //color: Colors.white,
-                  child: const Text(
-                    "Nama",
-                    style: TextStyle(fontSize: 15, color: Colors.grey),
-                  )),
-              Padding(
-                padding: const EdgeInsets.only(left: 15.0),
-                child: SizedBox(
-                  //color: Colors.white,
-                  width: MediaQuery.of(context).size.width,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Flexible(
-                        child: Text(
-                          isiUser[0].name,
-                          maxLines: 1,
-                          style: TextStyle(fontSize: ScreenUtil().setSp(18)),
+        body: FutureBuilder<User>(
+          future: listUser,
+          builder: ((context, snapshot) {
+            if (snapshot.hasData) {
+              User isiUser = snapshot.data!;
+              return SingleChildScrollView(
+                  child: Column(children: [
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Column(children: [
+                    SizedBox(
+                        width: MediaQuery.of(context).size.width,
+                        //color: Colors.white,
+                        child: const Text(
+                          "Nama",
+                          style: TextStyle(fontSize: 15, color: Colors.grey),
+                        )),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 15.0),
+                      child: SizedBox(
+                        //color: Colors.white,
+                        width: MediaQuery.of(context).size.width,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Flexible(
+                              child: Text(
+                                isiUser.name,
+                                maxLines: 1,
+                                style:
+                                    TextStyle(fontSize: ScreenUtil().setSp(18)),
+                              ),
+                            ),
+                            GestureDetector(
+                                onTap: () async {
+                                  final namaAkun = await openDialogName();
+                                  if (namaAkun == null || namaAkun.isEmpty)
+                                    return;
+
+                                  setState(() => this.namaAkun = namaAkun);
+                                },
+                                child: const Icon(Icons.edit))
+                          ],
                         ),
                       ),
-                      GestureDetector(
-                          onTap: () async {
-                            final namaAkun = await openDialogName();
-                            if (namaAkun == null || namaAkun.isEmpty) return;
-
-                            setState(() => this.namaAkun = namaAkun);
-                          },
-                          child: const Icon(Icons.edit))
+                    ),
+                  ]),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width,
+                        child: const Text(
+                          "Nomor Telepon",
+                          style: TextStyle(fontSize: 15, color: Colors.grey),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 15.0),
+                        child: SizedBox(
+                          width: MediaQuery.of(context).size.width,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Flexible(
+                                child: Text(
+                                  nomor,
+                                  style: TextStyle(
+                                      fontSize: ScreenUtil().setSp(18)),
+                                ),
+                              ),
+                              GestureDetector(
+                                  onTap: () {}, child: const Icon(Icons.edit))
+                            ],
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                 ),
-              ),
-            ]),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Column(
-              children: [
-                SizedBox(
-                  width: MediaQuery.of(context).size.width,
-                  child: const Text(
-                    "Nomor Telepon",
-                    style: TextStyle(fontSize: 15, color: Colors.grey),
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width,
+                        child: const Text(
+                          "Password",
+                          style: TextStyle(fontSize: 15, color: Colors.grey),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 15.0),
+                        child: SizedBox(
+                          width: MediaQuery.of(context).size.width,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Flexible(
+                                child: Text(
+                                  password,
+                                  style: const TextStyle(
+                                    fontSize: 18,
+                                  ),
+                                ),
+                              ),
+                              GestureDetector(
+                                  onTap: () {}, child: const Icon(Icons.edit))
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(left: 15.0),
-                  child: SizedBox(
-                    width: MediaQuery.of(context).size.width,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Flexible(
-                          child: Text(
-                            nomor,
-                            style:  TextStyle(fontSize: ScreenUtil().setSp(18)),
+                  padding: const EdgeInsets.all(10.0),
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width,
+                        child: const Text(
+                          "Alamat",
+                          style: TextStyle(fontSize: 15, color: Colors.grey),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 15.0),
+                        child: SizedBox(
+                          width: MediaQuery.of(context).size.width,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Flexible(
+                                child: Text(alamat,
+                                    style: TextStyle(
+                                        fontSize: ScreenUtil().setSp(18))),
+                              ),
+                              GestureDetector(
+                                  onTap: () {}, child: const Icon(Icons.edit))
+                            ],
                           ),
                         ),
-                        GestureDetector(
-                            onTap: () {}, child: const Icon(Icons.edit))
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
-                ),
-              ],
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Column(
-              children: [
-                SizedBox(
-                  width: MediaQuery.of(context).size.width,
-                  child: const Text(
-                    "Password",
-                    style: TextStyle(fontSize: 15, color: Colors.grey),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 15.0),
-                  child: SizedBox(
-                    width: MediaQuery.of(context).size.width,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Flexible(
-                          child: Text(
-                            password,
-                            style: const TextStyle(
-                              fontSize: 18,
-                            ),
-                          ),
-                        ),
-                        GestureDetector(
-                            onTap: () {}, child: const Icon(Icons.edit))
-                      ],
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Column(
-              children: [
-                SizedBox(
-                  width: MediaQuery.of(context).size.width,
-                  child: const Text(
-                    "Alamat",
-                    style: TextStyle(fontSize: 15, color: Colors.grey),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 15.0),
-                  child: SizedBox(
-                    width: MediaQuery.of(context).size.width,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Flexible(
-                          child: Text(
-                            alamat,
-                            style: TextStyle(fontSize: ScreenUtil().setSp(18))
-                          ),
-                        ),
-                        GestureDetector(
-                            onTap: () {}, child: const Icon(Icons.edit))
-                      ],
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          )
-        ]));
-  
+                )
+              ]));
+            } else if (snapshot.hasError) {
+              return Text("${snapshot.error}");
+            }
 
-          } else if (snapshot.hasError) {
-            return Text("${snapshot.error}");
-          }
-
-          return const CircularProgressIndicator();
-        }),
-      ));
-}
+            return const Center(child: CircularProgressIndicator());
+          }),
+        ));
+  }
 }
