@@ -19,7 +19,7 @@ class RincianPoint extends StatelessWidget {
 
           //List
            SizedBox(
-            height: ScreenUtil().setHeight(350),
+            height: ScreenUtil().setHeight(400),
           child: const RincianList())
         ],
       ),

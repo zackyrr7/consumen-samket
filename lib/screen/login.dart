@@ -58,21 +58,17 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   // ignore: non_constant_identifier_names
-  signIn(String nomor_hp, password) async {
+  signIn(String email,String password) async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    Map data = {'nomor_hp': nomor_hp, 'password': password};
+    Map data = {'email': email, 'password': password};
 
     // ignore: prefer_typing_uninitialized_variables, avoid_init_to_null
     var jsonResponse = null;
 
-// void saveString(String jsonResponse String token) async {
-//   Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
-//   SharedPreferences preferences = await _prefs;
-//   preferences.setString(String token, value);
-// }
+
 
     var response = await http.post(
-        Uri.parse("$url/auth/login"),
+        Uri.parse("$url/login"),
         body: data);
     if (response.statusCode == 200) {
       jsonResponse = json.decode(response.body);
@@ -87,7 +83,9 @@ class _LoginPageState extends State<LoginPage> {
         //saveString("token", jsonResponse['token'].toString());
 
         sharedPreferences.setString(
-            "token", jsonResponse['acces_token'].toString());
+            "token", jsonResponse['token'].toString());
+          sharedPreferences.setString(
+            "id", jsonResponse['id'].toString());
         Navigator.of(context).pushAndRemoveUntil(
             MaterialPageRoute(
                 builder: (BuildContext context) => const MyBotNavbar()),

@@ -11,7 +11,7 @@ class User {
     return User(
       id: json['id'],
       name: json['name'],
-      nomor_hp: json['nomor_hp'],
+      nomor_hp: json['email'],
     );
   }
 

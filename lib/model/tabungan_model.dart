@@ -14,5 +14,6 @@ class Tabungan {
     );
   }
   Map<String, dynamic> toJson() =>
-      {"tanggal": tanggal, "total": total.toString()};
+      {"tanggal": tanggal, "total": total};
+ 
 }

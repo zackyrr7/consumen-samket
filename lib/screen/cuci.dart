@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:sampah_market/constant.dart';
 import 'package:http/http.dart' as http;
+import 'package:sampah_market/widget/beranda/card_point.dart';
 
 class Cucii extends StatefulWidget {
   const Cucii({Key? key}) : super(key: key);
@@ -28,6 +29,7 @@ class _CuciiState extends State<Cucii> {
               : ListView(
                   children: <Widget>[
                     logo(),
+                    CardPoint(),
                     input(),
                     tombol(),
                     catatan(),
@@ -48,7 +50,7 @@ class _CuciiState extends State<Cucii> {
       "nomor_hp": nomor_hp,
       "jenis": jenis,
     });
-    if (response.statusCode == 201) {
+    if (response.statusCode == 200) {
       jsonResponse = json.decode(response.body);
       print('Response Status: ${response.statusCode}');
       print('Response body: ${response.statusCode}');

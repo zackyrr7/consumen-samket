@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:sampah_market/demo.dart';
+
 import 'package:sampah_market/model/Tabungan_model.dart';
 
 import 'package:sampah_market/model/repository_tabungan.dart';
@@ -50,7 +50,7 @@ class _RincianListState extends State<RincianList> {
                         height: ScreenUtil().setHeight(120),
                         child: Column(
                           children: [
-                            Text(
+                            const Text(
                               "Tanggal Transaksi",
                               style: TextStyle(color: Colors.grey),
                             ),

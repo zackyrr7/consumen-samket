@@ -39,17 +39,16 @@ class _RegisterState extends State<Register> {
     );
   }
 
-  register(String name, String nomor_hp, String password,
-      String password_confirmation) async {
+  register(String name, String email, String password,) async {
     var jsonResponse = null;
     //try{
-    final response = await http.post(Uri.parse("$url/auth/register/"), body: {
+    final response = await http.post(Uri.parse("$url/register/"), body: {
       "name": name,
-      "nomor_hp": nomor_hp,
+      "email": email,
       "password": password,
-      "password_confirmation": password_confirmation,
+      
     });
-    if (response.statusCode == 201) {
+    if (response.statusCode == 200) {
       jsonResponse = json.decode(response.body);
       print('Response Status: ${response.statusCode}');
       print('Response body: ${response.statusCode}');
@@ -87,8 +86,7 @@ class _RegisterState extends State<Register> {
   final _nameController = TextEditingController();
   final _nomorController = TextEditingController();
   final _passController = TextEditingController();
-  final _passConController = TextEditingController();
-
+  
   Container input() {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 20.0),
@@ -131,19 +129,7 @@ class _RegisterState extends State<Register> {
               hintStyle: TextStyle(color: Colors.black87),
             ),
           ),
-          TextFormField(
-            controller: _passConController,
-            cursorColor: Colors.black,
-            obscureText: true,
-            style: const TextStyle(color: Colors.black87),
-            decoration: const InputDecoration(
-              icon: Icon(Icons.lock, color: Colors.black87),
-              hintText: "Konfirmasi Password",
-              border: UnderlineInputBorder(
-                  borderSide: BorderSide(color: Colors.black87)),
-              hintStyle: TextStyle(color: Colors.black87),
-            ),
-          ),
+         
         ],
       ),
     );
@@ -161,15 +147,15 @@ class _RegisterState extends State<Register> {
                 MaterialStateProperty.all(hijauMain.withOpacity(0.5))),
         onPressed: _nameController.text == "" ||
                 _nomorController.text == "" ||
-                _passController.text == "" ||
-                _passConController.text == ""
+                _passController.text == "" 
+                
             ? null
             : () {
                 setState(() {
                   _isLoading = true;
                 });
                 register(_nameController.text, _nomorController.text,
-                    _passController.text, _passConController.text);
+                    _passController.text);
               },
 
         //color: Colors.purple,

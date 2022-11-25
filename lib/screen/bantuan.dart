@@ -5,7 +5,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:sampah_market/demo.dart';
 
 import 'package:sampah_market/model/pertanyaan_model.dart';
+import 'package:sampah_market/screen/login.dart';
 import 'package:sampah_market/widget/bantuan/detail.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:sampah_market/widget/bantuan/hubungin.dart';
 import 'package:url_launcher/url_launcher_string.dart';
@@ -20,6 +22,7 @@ class Bantuan extends StatefulWidget {
 }
 
 class _BantuanState extends State<Bantuan> {
+  late final SharedPreferences sharedPreferences;
   Service serviceApi = Service();
   late Future<List<Pertanyaan>> listPertanyaan;
   @override
@@ -27,7 +30,18 @@ class _BantuanState extends State<Bantuan> {
     // ignore: todo
     // TODO: implement initState
     super.initState();
+    checkLoginStatus();
     listPertanyaan = serviceApi.getAllBarang();
+    
+  }
+   checkLoginStatus() async {
+    sharedPreferences = await SharedPreferences.getInstance();
+    if (sharedPreferences.getString("token") == null) {
+      Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(
+              builder: (BuildContext context) => const LoginPage()),
+          (Route<dynamic> route) => false);
+    }
   }
 
   @override

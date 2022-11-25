@@ -32,25 +32,38 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:sampah_market/constant.dart';
 import 'package:sampah_market/model/user_model.dart';
-
+import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+
 class Service {
-  Future<User> getAllUser() async {
+  Future<User?> getAllUser() async {
     SharedPreferences pref = await SharedPreferences.getInstance();
     var token = pref.getString("token");
-    final response = await http.get(Uri.parse("$url/auth/profile"), headers: {
+    final response = await http.get(Uri.parse("$url/profile"), headers: {
       'Content-Type': 'application/json',
-      'Accerpt': 'application/json',
+      'Accept': 'application/json',
       'Authorization': 'Bearer $token'
     });
     if (response.statusCode == 200) {
       //List jsonResponse = jsonDecode(response.body);
-   
+
       //List jsonResponse = new Map<String, dynamic>.from(jsonDecode(response.body));
-      return User.fromJson(jsonDecode(response.body)) ;
+      return User.fromJson(jsonDecode(response.body));
+    } else if (response.statusCode == 401) {
+      SharedPreferences pref = await SharedPreferences.getInstance();
+      pref.clear();
+
+      return alert();
     } else {
       throw Exception('failed to load data');
     }
   }
+}
+
+alert() {
+  // ignore: avoid_unnecessary_containers
+  Container(
+    child: const Text("asdasd"),
+  );
 }

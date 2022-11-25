@@ -5,7 +5,8 @@ import 'package:sampah_market/model/repository_get_akun.dart';
 import 'package:sampah_market/model/user_model.dart';
 import 'package:sampah_market/screen/login.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:http/http.dart' as http;
+
+import 'package:url_launcher/url_launcher.dart';
 
 class Akun extends StatefulWidget {
   const Akun({Key? key}) : super(key: key);
@@ -17,7 +18,7 @@ class Akun extends StatefulWidget {
 class _AkunState extends State<Akun> {
   late SharedPreferences sharedPreferences;
   Service serviceApi = Service();
-  late Future<User> listUser;
+  late Future<User?> listUser;
 
   @override
   void initState() {
@@ -41,17 +42,6 @@ class _AkunState extends State<Akun> {
   }
 
   late TextEditingController controllernama;
-  String? namaAkun = "Hazacky Azwat Ramadhan";
-  String email = "Zackyrr7@gmail.com";
-  String nomor = "089673626531";
-  String alamat =
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi a nibh at neque suscipit rhoncus. Nunc at massa lectus. Pellentesque porttitor purus id libero tincidunt.";
-  String password = "********";
-  // @override
-  // void initState() {
-  //   super.initState();
-
-  // }
 
   @override
   void dispose() {
@@ -61,28 +51,7 @@ class _AkunState extends State<Akun> {
 
   @override
   Widget build(BuildContext context) {
-    void editnama() {
-      Navigator.of(context).pop(controllernama.text);
 
-      controllernama.clear();
-    }
-
-    Future<String?> openDialogName() => showDialog<String?>(
-        context: context,
-        builder: (context) => AlertDialog(
-              title: const Text("Username"),
-              content: TextField(
-                autofocus: true,
-                controller: controllernama,
-              ),
-              actions: [
-                TextButton(
-                    onPressed: () {
-                      editnama();
-                    },
-                    child: const Text('Edit'))
-              ],
-            ));
 
     return Scaffold(
         appBar: AppBar(
@@ -110,7 +79,7 @@ class _AkunState extends State<Akun> {
             )
           ],
         ),
-        body: FutureBuilder<User>(
+        body: FutureBuilder<User?>(
           future: listUser,
           builder: ((context, snapshot) {
             if (snapshot.hasData) {
@@ -143,15 +112,6 @@ class _AkunState extends State<Akun> {
                                     TextStyle(fontSize: ScreenUtil().setSp(18)),
                               ),
                             ),
-                            GestureDetector(
-                                onTap: () async {
-                                  final namaAkun = await openDialogName();
-                                  if (namaAkun == null || namaAkun.isEmpty)
-                                    return;
-
-                                  setState(() => this.namaAkun = namaAkun);
-                                },
-                                child: const Icon(Icons.edit))
                           ],
                         ),
                       ),
@@ -178,13 +138,11 @@ class _AkunState extends State<Akun> {
                             children: [
                               Flexible(
                                 child: Text(
-                                  nomor,
+                                  isiUser.nomor_hp,
                                   style: TextStyle(
                                       fontSize: ScreenUtil().setSp(18)),
                                 ),
                               ),
-                              GestureDetector(
-                                  onTap: () {}, child: const Icon(Icons.edit))
                             ],
                           ),
                         ),
@@ -192,70 +150,85 @@ class _AkunState extends State<Akun> {
                     ],
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(10.0),
+                Container(
+                  width: ScreenUtil().setWidth(360),
+                  height: ScreenUtil().setHeight(1),
+                  color: Colors.black54,
+                ),
+                SizedBox(
+                  width: ScreenUtil().setWidth(360),
+                  height: ScreenUtil().setHeight(150),
+                 
                   child: Column(
                     children: [
-                      SizedBox(
-                        width: MediaQuery.of(context).size.width,
-                        child: const Text(
-                          "Password",
-                          style: TextStyle(fontSize: 15, color: Colors.grey),
-                        ),
-                      ),
+                      const Text("Ikuti Media Sosial Kami"),
                       Padding(
-                        padding: const EdgeInsets.only(left: 15.0),
-                        child: SizedBox(
-                          width: MediaQuery.of(context).size.width,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Flexible(
-                                child: Text(
-                                  password,
-                                  style: const TextStyle(
-                                    fontSize: 18,
-                                  ),
+                        padding: const EdgeInsets.only(top: 8.0),
+                        child: Row(mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            GestureDetector(onTap: _openIgChat,
+                              child: SizedBox(
+                                width: ScreenUtil().setWidth(100),
+                                height: ScreenUtil().setHeight(100),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    SizedBox(
+                                      width: ScreenUtil().setWidth(70),
+                                      height: ScreenUtil().setHeight(70),
+                                      child: Image.asset(
+                                        "assets/gambar/ig.png",
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
+                                    const Text("Instagram")
+                                  ],
                                 ),
                               ),
-                              GestureDetector(
-                                  onTap: () {}, child: const Icon(Icons.edit))
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Column(
-                    children: [
-                      SizedBox(
-                        width: MediaQuery.of(context).size.width,
-                        child: const Text(
-                          "Alamat",
-                          style: TextStyle(fontSize: 15, color: Colors.grey),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 15.0),
-                        child: SizedBox(
-                          width: MediaQuery.of(context).size.width,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Flexible(
-                                child: Text(alamat,
-                                    style: TextStyle(
-                                        fontSize: ScreenUtil().setSp(18))),
+                            ),
+                            GestureDetector(onTap: _openTTChat,
+                              child: SizedBox(
+                                width: ScreenUtil().setWidth(100),
+                                height: ScreenUtil().setHeight(100),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    SizedBox(
+                                      width: ScreenUtil().setWidth(70),
+                                      height: ScreenUtil().setHeight(70),
+                                      child: Image.asset(
+                                        "assets/gambar/tiktok.png",
+                                        fit: BoxFit.fill,
+                                      ),
+                                    ),
+                                    const Text("Tiktok")
+                                  ],
+                                ),
                               ),
-                              GestureDetector(
-                                  onTap: () {}, child: const Icon(Icons.edit))
-                            ],
-                          ),
+                            ),
+                            GestureDetector(onTap: _openWhatsAppChat,
+                              child: SizedBox(
+                                width: ScreenUtil().setWidth(100),
+                                height: ScreenUtil().setHeight(100),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    SizedBox(
+                                      width: ScreenUtil().setWidth(70),
+                                      height: ScreenUtil().setHeight(70),
+                                      child: Image.asset(
+                                        "assets/gambar/whatsapp.png",
+                                        fit: BoxFit.fill,
+                                      ),
+                                    ),
+                                    const Text("Whatsapp")
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
-                      ),
+                      )
                     ],
                   ),
                 )
@@ -268,4 +241,27 @@ class _AkunState extends State<Akun> {
           }),
         ));
   }
+}
+
+void _openWhatsAppChat() async {
+  String phoneNumber = '+6281347771171';
+  
+  String url = 'https://wa.me/$phoneNumber?text=';
+
+  // ignore: deprecated_member_use
+  await launch(url);
+}
+void _openTTChat() async {
+ 
+  String url = 'http://www.tiktok.com/@sampahmarket';
+
+  // ignore: deprecated_member_use
+  await launch(url);
+}
+void _openIgChat() async {
+
+  String url = 'https://www.instagram.com/sampah_market/';
+
+  // ignore: deprecated_member_use
+  await launch(url);
 }

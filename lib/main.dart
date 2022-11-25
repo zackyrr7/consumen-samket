@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:sampah_market/screen/akun.dart';
+
 import 'package:sampah_market/screen/login.dart';
 //import 'package:sampah_market/screen/login.dart';
 
-import 'package:sampah_market/widget/botomnavbar.dart';
+
 
 import 'package:sampah_market/theme.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -13,7 +13,11 @@ Future <void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
    SharedPreferences pref = await SharedPreferences.getInstance();
   var token = pref.getString("token");
+  // ignore: avoid_print
   print(token);
+  var id = pref.getString("id");
+  // ignore: avoid_print
+  print(id);
 
   runApp(const MyApp());
 }

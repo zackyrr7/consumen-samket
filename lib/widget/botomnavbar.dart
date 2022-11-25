@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sampah_market/constant.dart';
 import 'package:sampah_market/screen/login.dart';
-import 'package:sampah_market/screen/riwayat.dart';
+
 import 'package:sampah_market/screen/bantuan.dart';
 import 'package:sampah_market/screen/akun.dart';
 import 'package:sampah_market/screen/beranda.dart';
@@ -38,7 +38,7 @@ class _MyBotNavbarState extends State<MyBotNavbar> {
   int _currentIndex = 0;
   final List<Widget> _children = [
     const Beranda(),
-    const Riwayat(),
+    // const Riwayat(),
     const Bantuan(),
     const Akun(),
   ];
@@ -66,10 +66,10 @@ class _MyBotNavbarState extends State<MyBotNavbar> {
             icon: Icon(Icons.home),
             label: 'Beranda',
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.history),
-            label: 'Riwayat',
-          ),
+          // BottomNavigationBarItem(
+          //   icon: Icon(Icons.history),
+          //   label: 'Riwayat',
+          // ),
           BottomNavigationBarItem(
             icon: Icon(Icons.help),
             label: 'Bantuan',
