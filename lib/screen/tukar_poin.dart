@@ -239,12 +239,12 @@ class _TukarPointState extends State<TukarPoint> {
                                     image: AssetImage("assets/gambar/cuci.png"),
                                     fit: BoxFit.contain,
                                   )),
-                              const Center(
+                               Center(
                                 child: Padding(
                                   padding: EdgeInsets.all(8.0),
                                   child: Text(
-                                    ('Pencucian moto/mobil'),
-                                    textAlign: TextAlign.center,
+                                    ('Pencucian motor/mobil'),style: TextStyle(fontSize: ScreenUtil().setSp(12)),
+                                    textAlign: TextAlign.center
                                   ),
                                 ),
                               )

@@ -7,9 +7,14 @@ import 'package:sampah_market/constant.dart';
 import 'package:http/http.dart' as http;
 import 'package:sampah_market/model/repository_get_akun.dart';
 import 'package:sampah_market/screen/login.dart';
+import 'package:sampah_market/screen/pembayaran_pdam.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../model/user_model.dart';
+
+String id = '';
+String namaUser = '';
+String hp = '';
 
 class Pesan extends StatefulWidget {
   const Pesan({Key? key}) : super(key: key);
@@ -31,6 +36,18 @@ class _PesanState extends State<Pesan> {
     //listUser = serviceApi.getAllUser();
     listUser = serviceApi.getAllUser();
     checkLoginStatus();
+    _loadId();
+  }
+
+   _loadId() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      id = (prefs.getString('id') ?? '');
+      namaUser = (prefs.getString('nama') ?? '');
+      hp = (prefs.getString('hp') ?? '');
+      print(namaUser);
+      print(id);
+    });
   }
 
   checkLoginStatus() async {
@@ -82,15 +99,19 @@ class _PesanState extends State<Pesan> {
     String barang,
     String alamat,
     String tanggal,
+    String user_id
   ) async {
     var jsonResponse = null;
     //try{
-    final response = await http.post(Uri.parse("$url/pesan/"), body: {
-      "nama": nama,
-      "nomor_hp": nomor_hp,
+    final response = await http.post(Uri.parse("$url/pesan/"),headers: {
+      'Accept': 'application/json',
+    }, body: {
+      "nama": namaUser,
+      "nomor_hp": hp,
       "barang": barang,
       "alamat": alamat,
-      "tanggal": tanggal
+      "tanggal": tanggal,
+      "user_id": id
     });
     if (response.statusCode == 200) {
       jsonResponse = json.decode(response.body);
@@ -127,52 +148,19 @@ class _PesanState extends State<Pesan> {
     );
   }
 
-  final _namaController = TextEditingController();
-  final _nomorController = TextEditingController();
+  final _namaController = namaUser;
+  final _nomorController = hp;
   final _barangController = TextEditingController();
   final _alamatController = TextEditingController();
   final _tanggalController = TextEditingController();
+  final _userController = id;
 
   Container input() {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 20.0),
       child: Column(
         children: <Widget>[
-          Container(
-            color: Colors.white,
-            child: TextFormField(
-              controller: _namaController,
-              cursorColor: Colors.black,
-              style: const TextStyle(color: Colors.black),
-              decoration: const InputDecoration(
-                fillColor: Colors.white
-                //icon: Icon(Icons.email, color: Colors.black),
-                ,
-                hintText: "Nama Anda",
-                //border: UnderlineInputBorder(
-                //borderSide: BorderSide(color:Colors.white)),
-                hintStyle: TextStyle(color: Colors.black87),
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 8.0),
-            child: Container(
-              color: Colors.white,
-              child: TextFormField(
-                controller: _nomorController,
-                cursorColor: Colors.black,
-                style: const TextStyle(color: Colors.black),
-                decoration: const InputDecoration(
-                  //icon: Icon(Icons.email, color: Colors.black),
-                  hintText: "Nomor handphone",
-                  border: UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.black87)),
-                  hintStyle: TextStyle(color: Colors.black87),
-                ),
-              ),
-            ),
-          ),
+          
           Padding(
             padding: const EdgeInsets.only(top: 8.0),
             child: Container(
@@ -222,7 +210,7 @@ class _PesanState extends State<Pesan> {
                 style: const TextStyle(color: Colors.black87),
                 decoration: const InputDecoration(
                   //icon: Icon(Icons.lock, color: Colors.black87),
-                  hintText: "Tanggal yang anda inginkan",
+                  hintText: "Waktu penjualan yang di inginkan",
                   border: UnderlineInputBorder(
                       borderSide: BorderSide(color: Colors.black87)),
                   hintStyle: TextStyle(color: Colors.black87),
@@ -242,8 +230,7 @@ class _PesanState extends State<Pesan> {
       padding: const EdgeInsets.symmetric(horizontal: 15.0),
       margin: const EdgeInsets.only(top: 15.0),
       child: ElevatedButton(
-        onPressed: _namaController.text == "" ||
-                _nomorController.text == "" ||
+        onPressed: 
                 _alamatController.text == "" ||
                 _tanggalController.text == "" ||
                 _barangController.text == ""
@@ -253,11 +240,11 @@ class _PesanState extends State<Pesan> {
                   _isLoading = true;
                 });
                 transaksi(
-                    _namaController.text,
-                    _nomorController.text,
+                    _namaController,
+                    _nomorController,
                     _barangController.text,
                     _tanggalController.text,
-                    _alamatController.text);
+                    _alamatController.text,_userController);
               },
 
         //color: Colors.purple,

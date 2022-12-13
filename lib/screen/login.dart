@@ -86,6 +86,10 @@ class _LoginPageState extends State<LoginPage> {
             "token", jsonResponse['token'].toString());
           sharedPreferences.setString(
             "id", jsonResponse['id'].toString());
+            sharedPreferences.setString(
+            "nama", jsonResponse['nama'].toString());
+            sharedPreferences.setString(
+            "hp", jsonResponse['hp'].toString());
         Navigator.of(context).pushAndRemoveUntil(
             MaterialPageRoute(
                 builder: (BuildContext context) => const MyBotNavbar()),

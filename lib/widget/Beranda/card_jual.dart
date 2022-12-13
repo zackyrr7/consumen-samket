@@ -32,7 +32,7 @@ class Cardjual extends StatelessWidget {
                     width: 10,
                   ),
                   Text(
-                    "Jual Sampah",
+                    "Pemesanan",
                     style: TextStyle(fontSize: 15),
                   ),
                 ],

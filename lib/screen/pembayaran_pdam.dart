@@ -8,6 +8,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:http/http.dart' as http;
 import 'package:sampah_market/constant.dart';
 import 'package:sampah_market/widget/beranda/card_point.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+String id = '';
+String namaUser = '';
+String hp = '';
 
 class PembayaranPdam extends StatefulWidget {
   const PembayaranPdam({Key? key}) : super(key: key);
@@ -17,6 +22,25 @@ class PembayaranPdam extends StatefulWidget {
 }
 
 class _PembayaranPdamState extends State<PembayaranPdam> {
+ @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _loadId();
+  }
+
+  _loadId() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      id = (prefs.getString('id') ?? '');
+      namaUser = (prefs.getString('nama') ?? '');
+      hp = (prefs.getString('hp') ?? '');
+      print(namaUser);
+      print(id);
+    });
+  }
+
+
   bool _isLoading = false;
   @override
   Widget build(BuildContext context) {
@@ -44,13 +68,18 @@ class _PembayaranPdamState extends State<PembayaranPdam> {
     String nama,
     String nomor_hp,
     String air,
+    String user_id,
   ) async {
     var jsonResponse = null;
     //try{
-    final response = await http.post(Uri.parse("$url/pdam/"), body: {
-      "nama": nama,
-      "nomor_hp": nomor_hp,
+    final response = await http.post(Uri.parse("$url/pdam/"),
+     headers: {
+      'Accept': 'application/json',
+    }, body: {
+      "nama": namaUser,
+      "nomor_hp":hp,
       "air": air,
+      "user_id":id
     });
     if (response.statusCode == 200) {
       jsonResponse = json.decode(response.body);
@@ -87,50 +116,17 @@ class _PembayaranPdamState extends State<PembayaranPdam> {
     );
   }
 
-  final _namaController = TextEditingController();
-  final _nomorController = TextEditingController();
+  final _namaController = namaUser;
+  final _nomorController = hp;
   final _airController = TextEditingController();
+   final _userController = id;
 
   Container input() {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 20.0),
       child: Column(
         children: <Widget>[
-          Container(
-            color: Colors.white,
-            child: TextFormField(
-              controller: _namaController,
-              cursorColor: Colors.black,
-              style: const TextStyle(color: Colors.black),
-              decoration: const InputDecoration(
-                fillColor: Colors.white
-                //icon: Icon(Icons.email, color: Colors.black),
-                ,
-                hintText: "Nama Anda",
-                //border: UnderlineInputBorder(
-                //borderSide: BorderSide(color:Colors.white)),
-                hintStyle: TextStyle(color: Colors.black87),
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 8.0),
-            child: Container(
-              color: Colors.white,
-              child: TextFormField(
-                controller: _nomorController,
-                cursorColor: Colors.black,
-                style: const TextStyle(color: Colors.black),
-                decoration: const InputDecoration(
-                  //icon: Icon(Icons.email, color: Colors.black),
-                  hintText: "Nomor handphone",
-                  border: UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.black87)),
-                  hintStyle: TextStyle(color: Colors.black87),
-                ),
-              ),
-            ),
-          ),
+          
           Padding(
             padding: const EdgeInsets.only(top: 8.0),
             child: Container(
@@ -162,18 +158,19 @@ class _PembayaranPdamState extends State<PembayaranPdam> {
       padding: const EdgeInsets.symmetric(horizontal: 15.0),
       margin: const EdgeInsets.only(top: 15.0),
       child: ElevatedButton(
-        onPressed: _namaController.text == "" ||
-                _nomorController.text == "" ||
-                _airController.text == ""
+        onPressed: 
+                _airController.text == "" 
+              
             ? null
             : () {
                 setState(() {
                   _isLoading = true;
                 });
                 transaksi(
-                  _namaController.text,
-                  _nomorController.text,
+                  _namaController,
+                  _nomorController,
                   _airController.text,
+                  _userController
                 );
               },
 

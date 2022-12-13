@@ -1,5 +1,3 @@
-
-
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
@@ -8,6 +6,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:sampah_market/constant.dart';
 import 'package:http/http.dart' as http;
 import 'package:sampah_market/widget/beranda/card_point.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+String id = '';
+String namaUser = '';
+String hp = '';
 
 class EWallet extends StatefulWidget {
   const EWallet({Key? key}) : super(key: key);
@@ -17,6 +20,24 @@ class EWallet extends StatefulWidget {
 }
 
 class _EWalletState extends State<EWallet> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _loadId();
+  }
+
+  _loadId() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      id = (prefs.getString('id') ?? '');
+      namaUser = (prefs.getString('nama') ?? '');
+      hp = (prefs.getString('hp') ?? '');
+      print(namaUser);
+      print(id);
+    });
+  }
+
   bool _isLoading = false;
   @override
   Widget build(BuildContext context) {
@@ -46,15 +67,19 @@ class _EWalletState extends State<EWallet> {
     String jenis,
     String no_wallet,
     String total,
+    String user_id,
   ) async {
     var jsonResponse = null;
     //try{
-    final response = await http.post(Uri.parse("$url/wallet/"), body: {
-      "nama": nama,
-      "nomor_hp": nomor_hp,
+    final response = await http.post(Uri.parse("$url/wallet/"), headers: {
+      'Accept': 'application/json',
+    }, body: {
+      "nama": namaUser,
+      "nomor_hp": hp,
       "jenis": jenis,
       "no_wallet": no_wallet,
-      "total": total
+      "total": total,
+      "user_id": id
     });
     if (response.statusCode == 200) {
       jsonResponse = json.decode(response.body);
@@ -91,52 +116,18 @@ class _EWalletState extends State<EWallet> {
     );
   }
 
-  final _namaController = TextEditingController();
-  final _nomorController = TextEditingController();
+  final _namaController = namaUser;
+  final _nomorController = hp;
   final _jenisController = TextEditingController();
   final _walletController = TextEditingController();
   final _totalController = TextEditingController();
+  final _userController = id;
 
   Container input() {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 20.0),
       child: Column(
         children: <Widget>[
-          Container(
-            color: Colors.white,
-            child: TextFormField(
-              controller: _namaController,
-              cursorColor: Colors.black,
-              style: const TextStyle(color: Colors.black),
-              decoration: const InputDecoration(
-                fillColor: Colors.white
-                //icon: Icon(Icons.email, color: Colors.black),
-                ,
-                hintText: "Nama Anda",
-                //border: UnderlineInputBorder(
-                //borderSide: BorderSide(color:Colors.white)),
-                hintStyle: TextStyle(color: Colors.black87),
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 8.0),
-            child: Container(
-              color: Colors.white,
-              child: TextFormField(
-                controller: _nomorController,
-                cursorColor: Colors.black,
-                style: const TextStyle(color: Colors.black),
-                decoration: const InputDecoration(
-                  //icon: Icon(Icons.email, color: Colors.black),
-                  hintText: "Nomor handphone",
-                  border: UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.black87)),
-                  hintStyle: TextStyle(color: Colors.black87),
-                ),
-              ),
-            ),
-          ),
           Padding(
             padding: const EdgeInsets.only(top: 8.0),
             child: Container(
@@ -206,23 +197,21 @@ class _EWalletState extends State<EWallet> {
       padding: const EdgeInsets.symmetric(horizontal: 15.0),
       margin: const EdgeInsets.only(top: 15.0),
       child: ElevatedButton(
-        onPressed: _namaController.text == "" ||
-                _nomorController.text == "" ||
-                _jenisController.text == "" ||
+        onPressed: _jenisController.text == "" ||
                 _walletController.text == "" ||
-                _totalController.text == "" 
+                _totalController.text == ""
             ? null
             : () {
                 setState(() {
                   _isLoading = true;
                 });
                 transaksi(
-                  _namaController.text,
-                  _nomorController.text,
-                  _jenisController.text,
-                  _walletController.text,
-                  _totalController.text
-                );
+                    _namaController,
+                    _nomorController,
+                    _jenisController.text,
+                    _walletController.text,
+                    _totalController.text,
+                    _userController);
               },
 
         //color: Colors.purple,
@@ -248,8 +237,8 @@ class _EWalletState extends State<EWallet> {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text(
-              "Setelah membuat transaksi penukaran saldo berupa penukaran E-Wallet, Pihak dari Sampah Market akan melakukan pengecekan terkait saldo anda. E-wallet yang tersedia berupa \nShopeePay\nDana\nGopay\nPihak admin akan melakukan konfirmasi kepada anda. Terima Kasih",
-               textAlign: TextAlign.justify,
+                "Setelah membuat transaksi penukaran saldo berupa penukaran E-Wallet, Pihak dari Sampah Market akan melakukan pengecekan terkait saldo anda. E-wallet yang tersedia berupa \nShopeePay\nDana\nGopay\nPihak admin akan melakukan konfirmasi kepada anda. Terima Kasih",
+                textAlign: TextAlign.justify,
                 style: TextStyle(fontSize: ScreenUtil().setSp(12)),
               ),
             )

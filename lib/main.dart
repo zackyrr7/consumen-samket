@@ -4,27 +4,30 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:sampah_market/screen/login.dart';
 //import 'package:sampah_market/screen/login.dart';
 
-
-
 import 'package:sampah_market/theme.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-Future <void> main() async {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-   SharedPreferences pref = await SharedPreferences.getInstance();
+  SharedPreferences pref = await SharedPreferences.getInstance();
   var token = pref.getString("token");
   // ignore: avoid_print
   print(token);
   var id = pref.getString("id");
   // ignore: avoid_print
   print(id);
+  var nama = pref.getString("nama");
+  // ignore: avoid_print
+  print(nama);
+   var hp = pref.getString("nama");
+  // ignore: avoid_print
+  print(hp);
 
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
-  
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +41,7 @@ class MyApp extends StatelessWidget {
           title: "Sampah market",
           theme: buildThemeData(),
           //home:  token ==null?const LoginPage():MyBotNavbar(),
-          
+
           home: const LoginPage(),
           //home: const MyBotNavbar(),
           //home:  if ()

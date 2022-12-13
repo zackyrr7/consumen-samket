@@ -4,7 +4,6 @@ import 'package:sampah_market/constant.dart';
 import 'package:sampah_market/model/Tabungan_model.dart';
 import 'package:sampah_market/model/repository_tabungan.dart';
 
-
 class CardPoint extends StatefulWidget {
   const CardPoint({
     Key? key,
@@ -15,7 +14,7 @@ class CardPoint extends StatefulWidget {
 }
 
 class _CardPointState extends State<CardPoint> {
-  String total = "";
+  String total2 = "";
   String tanggal = "";
   Service serviceApi = Service();
   late Future<List<Tabungan>> listTabungan;
@@ -39,12 +38,14 @@ class _CardPointState extends State<CardPoint> {
                 builder: ((context, snapshot) {
                   if (snapshot.hasData) {
                     List<Tabungan> isiTabungan = snapshot.data!;
-                    if (isiTabungan.isEmpty){
-                      total = "anda belum melakukan transaksi :(";
-                      tanggal = "anda belum melakukan transaksi :(";
-                    } else{
-                       total = isiTabungan[index].total.toString();
-                      tanggal = isiTabungan[index].tanggal;
+                    if (isiTabungan.isEmpty) {
+                      total2 = "Anda belum melakukan transaksi :(";
+
+                      tanggal = "Anda belum melakukan transaksi :(";
+                    } else {
+                      total2 = isiTabungan[index].total.toString();
+
+                      tanggal = isiTabungan[isiTabungan.length - 1].tanggal;
                     }
                     return Container(
                       decoration: BoxDecoration(
@@ -82,17 +83,29 @@ class _CardPointState extends State<CardPoint> {
                                           ),
                                         )),
                                     const SizedBox(
-                                      width: 10,
+                                      width: 5,
                                     ),
-                                    Text(
-                                      total,
-                                      style: TextStyle(
-                                          fontSize: ScreenUtil().setSp(15), color: Colors.white),
+                                    Container(
+                                      child: Text(
+                                        total2.toString(),
+                                        style: TextStyle(
+                                          fontSize: ScreenUtil().setSp(15),
+                                          color: Colors.white,
+                                        ),
+                                      ),
                                     )
                                   ],
                                 ),
-                                Text("Tanggal terakhir transaksi", style: TextStyle(color: Colors.white60),),
-                                Text(tanggal, style: TextStyle(fontSize: ScreenUtil().setSp(12),color: Colors.white),)
+                                Text(
+                                  "Tanggal terakhir transaksi",
+                                  style: TextStyle(color: Colors.white60),
+                                ),
+                                Text(
+                                  tanggal,
+                                  style: TextStyle(
+                                      fontSize: ScreenUtil().setSp(12),
+                                      color: Colors.white),
+                                )
                               ],
                             ),
                           ),

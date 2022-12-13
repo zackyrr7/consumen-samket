@@ -34,7 +34,7 @@ class CardList extends StatelessWidget {
                     width: 10,
                   ),
                   Text(
-                    "List Sampah yang dapat dijual",
+                    "List Barang yang dapat dijual",
                     style: TextStyle(fontSize: ScreenUtil().setSp(15)),
                   ),
                 ],
