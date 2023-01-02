@@ -97,7 +97,7 @@ class _RegisterState extends State<Register> {
             cursorColor: Colors.black,
             style: const TextStyle(color: Colors.black),
             decoration: const InputDecoration(
-              icon: Icon(Icons.email, color: Colors.black),
+              icon: Icon(Icons.person, color: Colors.black),
               hintText: "Nama Anda",
               border: UnderlineInputBorder(
                   borderSide: BorderSide(color: Colors.black87)),
@@ -109,7 +109,7 @@ class _RegisterState extends State<Register> {
             cursorColor: Colors.black,
             style: const TextStyle(color: Colors.black),
             decoration: const InputDecoration(
-              icon: Icon(Icons.email, color: Colors.black),
+              icon: Icon(Icons.add_call, color: Colors.black),
               hintText: "Nomor handphone",
               border: UnderlineInputBorder(
                   borderSide: BorderSide(color: Colors.black87)),

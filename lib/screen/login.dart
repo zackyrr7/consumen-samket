@@ -144,7 +144,7 @@ class _LoginPageState extends State<LoginPage> {
             cursorColor: Colors.black,
             style: const TextStyle(color: Colors.black),
             decoration: const InputDecoration(
-              icon: Icon(Icons.email, color: Colors.black),
+              icon: Icon(Icons.call, color: Colors.black),
               hintText: "Nomor handphone",
               border: UnderlineInputBorder(
                   borderSide: BorderSide(color: Colors.black87)),
